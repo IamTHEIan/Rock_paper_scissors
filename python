@@ -1,0 +1,55 @@
+# Optimize Rock Paper Scissors game
+# 1. 檢查使用者出拳是否是在選擇範圍內 (1,2,3)
+# 2.詢問使用者是否再玩一次，若使用者回答是肯定的，就再玩一次
+import random
+
+def print_hand(num):
+    if num == "1":
+        return "Rock"
+    elif num == "2":
+        return "Paper"
+    elif num == "3":
+        return "Scissors"
+
+print("Welcome to rock paper scissors!")
+player_name = input("Please enter your name: ")
+
+close_game = False                  # 問第二次迴圈，正確回答Ｎ時，跳出迴圈
+while close_game == False:
+    while True:
+        player_hand = input("Please enter 1: Rock, 2: Paper, 3: Scissors:   ")
+        # 若使用者輸入的是一個數字，就跳出 while 迴圈
+        if player_hand == "1" or player_hand == "2" or player_hand == "3":    #user_hand.isdigit()
+            break
+        else:
+            print("Please input 1, 2 or 3")
+
+    computer_hand = str(random.randint(1, 3))
+    print("{}: {}".format(player_name, print_hand(player_hand)))
+    print("Computer: {}".format(print_hand(computer_hand)))
+    if player_hand == computer_hand:
+        print("Draw!")
+    elif (player_hand == "1" and computer_hand == "3") or (player_hand == "2" and computer_hand == "1") or (player_hand == "3" and computer_hand == "2"):
+        print("Congradulations, " + player_name + "! You Win!")
+    elif (player_hand == "1" and computer_hand == "2") or (player_hand == "2" and computer_hand == "3") or (player_hand == "3" and computer_hand == "1"):
+        print("Sorry, " + player_name + ". You lost.")
+
+    again = input("Play again?(\"Y\" or \"N\")   ")   # 第一次問要不要繼續玩？
+    
+    if again == "Y":                                              #第一次就回答要繼續
+        continue
+    elif again == "N":                                           #第一次就回答不要繼續
+        print ("{}, thank you for playing!".format(player_name))
+        break
+    elif again != "Y" and again != "N":                   # 第一次沒有回答(Y/N)，問第二次要不要繼續玩？  
+        while True:
+            again_2 = input("Please enter \"Y\" or \"N\".    ")
+            if again_2 == "Y":                                 #第二次問，回答要繼續玩
+                again = "Y"
+                break
+            elif again_2 == "N":                               #第二次問，回答不要繼續玩
+                print ("{}, thank you for playing!".format(player_name))
+                close_game = True
+                break 
+            else:                                                    #第二次問，繼續亂回答，給他迴圈
+                continue
