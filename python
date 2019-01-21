@@ -38,18 +38,18 @@ while close_game == False:
     
     if again == "Y":                                              #第一次就回答要繼續
         continue
-    elif again == "N":                                           #第一次就回答不要繼續
+    elif again == "N":                                            #第一次就回答不要繼續
         print ("{}, thank you for playing!".format(player_name))
         break
-    elif again != "Y" and again != "N":                   # 第一次沒有回答(Y/N)，問第二次要不要繼續玩？  
+    elif again != "Y" and again != "N":                           # 第一次沒有回答(Y/N)，問第二次要不要繼續玩？  
         while True:
             again_2 = input("Please enter \"Y\" or \"N\".    ")
-            if again_2 == "Y":                                 #第二次問，回答要繼續玩
+            if again_2 == "Y":                                    #第二次問，回答要繼續玩
                 again = "Y"
                 break
-            elif again_2 == "N":                               #第二次問，回答不要繼續玩
+            elif again_2 == "N":                                  #第二次問，回答不要繼續玩
                 print ("{}, thank you for playing!".format(player_name))
                 close_game = True
                 break 
-            else:                                                    #第二次問，繼續亂回答，給他迴圈
+            else:                                                  #第二次問，繼續亂回答，給他迴圈
                 continue
